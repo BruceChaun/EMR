@@ -111,9 +111,5 @@ public class EMRLauncher {
 			processFile(file, ae, jcas);
 		}
 	}
-	
-	public static void main(String[] args) throws Exception {
-		EMRChain chain = new EMRChain();
-		chain.run(args);
-	}
+
 }

@@ -17,9 +17,9 @@ import com.emr.nlp.NLP;
  * map/reduce process of index table
  */
 public class Index {
-	private final String separator = "\u0001";
+	private final static String separator = "\u0001";
 	
-	public class NLPMapper 
+	public static class NLPMapper 
 	extends Mapper<Object, Text, Text, IntWritable> {
 		private final IntWritable one = new IntWritable(1);
 		
@@ -47,7 +47,7 @@ public class Index {
 		}
 	}
 	
-	public class IndexReducer
+	public static class IndexReducer
 	extends Reducer<Text, IntWritable, Text, IntWritable> {
 		private IntWritable result = new IntWritable();
 
