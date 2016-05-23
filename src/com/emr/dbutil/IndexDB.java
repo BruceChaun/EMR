@@ -13,10 +13,9 @@ public class IndexDB {
 	 * create table index_table (
 	 * keyword varchar(32) not null,
 	 * doc_name varchar(32) not null,
-	 * begin int not null,
-	 * end int not null,
+	 * freq int not null,
 	 * index word_doc (keyword, doc_name),
-	 * unique (keyword, doc_name, begin, end)
+	 * unique (keyword, doc_name, freq)
 	 * ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 	 */
 	
@@ -35,16 +34,15 @@ public class IndexDB {
 		conn = DriverManager.getConnection(url, user, password);
 	}
 	
-	public int insert(String keyword, String doc_name, int begin, int end) {
-		String sql = "insert into index_table values (?, ?, ?, ?)";
+	public int insert(String keyword, String doc_name, int freq) {
+		String sql = "insert into index_table values (?, ?, ?)";
 		
 		PreparedStatement pst;
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, keyword);
 			pst.setString(2, doc_name);
-			pst.setInt(3, begin);
-			pst.setInt(4, end);
+			pst.setInt(3, freq);
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

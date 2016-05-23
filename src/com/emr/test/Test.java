@@ -16,7 +16,7 @@ public class Test {
 	public static void test_db() throws ClassNotFoundException, SQLException {
 		IndexDB db = new IndexDB();
 		db.connect();
-		int ret = db.insert("a", "b", 1, 10);
+		int ret = db.insert("a", "b", 1);
 		
 		if (ret == 0)
 			System.out.println("insert OK");
