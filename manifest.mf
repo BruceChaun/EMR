@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: EMR index
+Class-Path: build/wc.jar lib/apache-commons-lang.jar lib/commons-configuration-1.9.jar lib/commons-logging-1.2.jar lib/hadoop-core-1.2.1.jar lib/IKAnalyzer2012_u6.jar lib/jackson-all-1.9.0.jar lib/lucene-core-3.6.0.jar lib/hadoop-mapreduce-client-core-0.23.1.jar lib/ruta-core-2.3.0.jar lib/uima-core.jar
+Main-Class: com.emr.EMRLauncher
