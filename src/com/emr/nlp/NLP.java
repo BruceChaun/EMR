@@ -9,7 +9,7 @@ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 public class NLP {
-	private String delimit = " ";
+	private final String delimit = " ";
 	
 	public String analyze(String text) {
 		String result = "";
