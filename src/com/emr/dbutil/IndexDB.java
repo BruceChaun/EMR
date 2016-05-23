@@ -15,7 +15,7 @@ public class IndexDB {
 	 * doc_name varchar(32) not null,
 	 * freq int not null,
 	 * index word_doc (keyword, doc_name),
-	 * unique (keyword, doc_name, freq)
+	 * unique (keyword, doc_name)
 	 * ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 	 */
 	
