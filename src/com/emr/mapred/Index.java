@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.StringTokenizer;
 
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -48,7 +49,7 @@ public class Index {
 	}
 	
 	public static class IndexReducer
-	extends Reducer<Text, IntWritable, Text, IntWritable> {
+	extends Reducer<Text, IntWritable, Text, NullWritable> {
 		private IntWritable result = new IntWritable();
 
 		private IndexDB db = new IndexDB();
@@ -59,8 +60,8 @@ public class Index {
 		    for (IntWritable val : values) {
 		      sum += val.get();
 		    }
-		    result.set(sum);
-		    context.write(key, result);
+		    //result.set(sum);
+		    //context.write(key, result);
 		    
 		    /*
 		     * write to index table

@@ -5,6 +5,7 @@ import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.chain.ChainMapper;
@@ -42,7 +43,7 @@ public class EMRChain extends Configured implements Tool{
 		job.setReducerClass(Index.IndexReducer.class);
 		
 		job.setOutputKeyClass(Text.class);
-		job.setOutputValueClass(IntWritable.class);
+		job.setOutputValueClass(NullWritable.class);
 		FileInputFormat.addInputPath(job, input);
 		FileOutputFormat.setOutputPath(job, output);
 		
