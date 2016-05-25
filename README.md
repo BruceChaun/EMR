@@ -14,4 +14,4 @@
 2. Run on Hadoop:  
 **/usr/local/hadoop/bin/hadoop jar EMR.jar /data /doc**
 
-The word count result should be written in _doc_ directory.
+The word count result should be stored in database.
