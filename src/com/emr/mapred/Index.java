@@ -1,7 +1,6 @@
 package com.emr.mapred;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.StringTokenizer;
 
 import org.apache.hadoop.io.IntWritable;
@@ -11,14 +10,14 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
-import com.emr.dbutil.IndexDB;
+import com.emr.entity.IndexInfo;
 import com.emr.nlp.NLP;
 
 /*
  * map/reduce process of index table
  */
 public class Index {
-	private final static String separator = "\u0001";
+	private final static String separator = "/u0001/";
 	
 	public static class NLPMapper 
 	extends Mapper<Object, Text, Text, IntWritable> {
@@ -49,10 +48,9 @@ public class Index {
 	}
 	
 	public static class IndexReducer
-	extends Reducer<Text, IntWritable, Text, NullWritable> {
+	extends Reducer<Text, IntWritable, IndexInfo, NullWritable> {
 		private IntWritable result = new IntWritable();
-
-		private IndexDB db = new IndexDB();
+		private IndexInfo info = new IndexInfo();
 		
 		public void reduce(Text key, Iterable<IntWritable> values, Context context) 
 				throws IOException, InterruptedException { 
@@ -60,23 +58,28 @@ public class Index {
 		    for (IntWritable val : values) {
 		      sum += val.get();
 		    }
-		    //result.set(sum);
-		    //context.write(key, result);
+		    result.set(sum);
+		    
+		    String[] splited = key.toString().split(separator);
+			info.setDoc_name(splited[0]);
+			info.setKeyword(splited[1]);
+			info.setFreq(sum);
+			context.write(info, NullWritable.get());
 		    
 		    /*
 		     * write to index table
 		     */
-		    try {
-				db.connect();
-				String[] splited = key.toString().split(separator);
-				String doc_name = splited[0];
-				String keyword = splited[1];
-				db.insert(keyword, doc_name, sum);
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-				System.out.println(e.toString());
-			}
+//		    try {
+//				db.connect();
+//				String[] splited = key.toString().split(separator);
+//				String doc_name = splited[0];
+//				String keyword = splited[1];
+//				db.insert(keyword, doc_name, sum);
+//			} catch (ClassNotFoundException | SQLException e) {
+//				// TODO Auto-generated catch block
+//				//e.printStackTrace();
+//				System.out.println(e.toString());
+//			}
 		}
 	}
 }
