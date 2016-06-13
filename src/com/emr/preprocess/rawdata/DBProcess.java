@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import com.emr.dbutil.ATC;
 import com.emr.dbutil.BioChemInfo;
 import com.emr.dbutil.ClinicCheckInfo;
 import com.emr.dbutil.DiagnoseInfo;
 import com.emr.dbutil.DoctorAdvice;
+import com.emr.dbutil.ICD10;
 import com.emr.dbutil.PatientBaseInfo;
 import com.emr.dbutil.SaccharinInfo;
 import com.emr.dbutil.SymptomInfo;
@@ -311,6 +313,53 @@ public class DBProcess {
 	    			sheet.getCell(5, i).getContents());
 	    	si.units = sheet.getCell(6, i).getContents();
 	    	si.insert();
+	    }
+	}
+	
+	public static void ICD10Info() throws IOException, BiffException {
+		String file = path + "ICD-10疾病编码-带统计码.xls";
+		File inputWorkbook = new File(file);
+		Workbook w;
+		
+		w = Workbook.getWorkbook(inputWorkbook);
+	    Sheet sheet = w.getSheet(0);
+	    
+	    ICD10 icd = new ICD10();
+	    try {
+			icd.connect();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    for (int i = 1; i < sheet.getRows(); i++) {
+	    	icd.icd = sheet.getCell(0, i).getContents();
+	    	icd.disease = sheet.getCell(1, i).getContents();
+	    	icd.stat_code = sheet.getCell(2, i).getContents();
+	    	icd.insert();
+	    }
+	}
+	
+	public static void ATCInfo() throws IOException, BiffException {
+		String file = path + "药物ATC编码（含一部分中药）.xls";
+		File inputWorkbook = new File(file);
+		Workbook w;
+		
+		w = Workbook.getWorkbook(inputWorkbook);
+	    Sheet sheet = w.getSheet(2);
+	    
+	    ATC atc = new ATC();
+	    try {
+			atc.connect();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    for (int i = 1; i < sheet.getRows(); i++) {
+	    	atc.atc_code = sheet.getCell(0, i).getContents();
+	    	atc.atc_name = sheet.getCell(1, i).getContents();
+	    	atc.insert();
 	    }
 	}
 }
