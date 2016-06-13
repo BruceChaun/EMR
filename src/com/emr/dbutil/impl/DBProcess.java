@@ -27,7 +27,6 @@ public class DBProcess {
 		Workbook w;
 		
 		w = Workbook.getWorkbook(inputWorkbook);
-		// Get the first sheet
 	    Sheet sheet = w.getSheet(0);
 	    
 	    PatientBaseInfo pbi = new PatientBaseInfo();
@@ -38,7 +37,6 @@ public class DBProcess {
 			e.printStackTrace();
 		}
 	    
-	    // Loop over first 10 column and lines
 	    for (int i = 1; i < sheet.getRows(); i++) {
 	    	int patientId = Integer.parseInt(
 	    			sheet.getCell(0, i).getContents().replaceFirst("\\.\\d+", ""));
@@ -57,7 +55,6 @@ public class DBProcess {
 		Workbook w;
 		
 		w = Workbook.getWorkbook(inputWorkbook);
-		// Get the first sheet
 	    Sheet sheet = w.getSheet(0);
 	    
 	    ClinicCheckInfo cci = new ClinicCheckInfo();
@@ -68,7 +65,6 @@ public class DBProcess {
 			e.printStackTrace();
 		}
 	    
-	    // Loop over first 10 column and lines
 	    for (int i = 1; i < sheet.getRows(); i++) {
 	    	int patientId = Integer.parseInt(sheet.getCell(0, i).getContents());
 	    	int examNo = Integer.parseInt(sheet.getCell(1, i).getContents());;
@@ -89,7 +85,6 @@ public class DBProcess {
 		Workbook w;
 		
 		w = Workbook.getWorkbook(inputWorkbook);
-		// Get the first sheet
 	    Sheet sheet = w.getSheet(0);
 	    
 	    UrineInfo ui = new UrineInfo();
@@ -100,7 +95,6 @@ public class DBProcess {
 			e.printStackTrace();
 		}
 	    
-	    // Loop over first 10 column and lines
 	    for (int i = 1; i < sheet.getRows(); i++) {
 	    	ui.ztc = sheet.getCell(0, i).getContents();
 	    	ui.sqxh = sheet.getCell(1, i).getContents();
@@ -132,7 +126,6 @@ public class DBProcess {
 		Workbook w;
 		
 		w = Workbook.getWorkbook(inputWorkbook);
-		// Get the first sheet
 	    Sheet sheet = w.getSheet(0);
 	    
 	    BioChemInfo bci = new BioChemInfo();
@@ -143,7 +136,6 @@ public class DBProcess {
 			e.printStackTrace();
 		}
 	    
-	    // Loop over first 10 column and lines
 	    for (int i = 1; i < sheet.getRows(); i++) {
 	    	bci.ztc = sheet.getCell(0, i).getContents();
 	    	bci.sqxh = sheet.getCell(1, i).getContents();
@@ -187,7 +179,6 @@ public class DBProcess {
 		Workbook w;
 		
 		w = Workbook.getWorkbook(inputWorkbook);
-		// Get the first sheet
 	    Sheet sheet = w.getSheet(0);
 	    
 	    SaccharinInfo si = new SaccharinInfo();
@@ -198,7 +189,6 @@ public class DBProcess {
 			e.printStackTrace();
 		}
 	    
-	    // Loop over first 10 column and lines
 	    for (int i = 1; i < sheet.getRows(); i++) {
 	    	si.ztc = sheet.getCell(0, i).getContents();
 	    	si.sqxh = sheet.getCell(1, i).getContents();
@@ -218,7 +208,6 @@ public class DBProcess {
 		Workbook w;
 		
 		w = Workbook.getWorkbook(inputWorkbook);
-		// Get the first sheet
 	    Sheet sheet = w.getSheet(0);
 	    
 	    DoctorAdvice da = new DoctorAdvice();
@@ -229,7 +218,6 @@ public class DBProcess {
 			e.printStackTrace();
 		}
 	    
-	    // Loop over first 10 column and lines
 	    for (int i = 1; i < sheet.getRows(); i++) {
 	    	da.patient_id = Integer.parseInt(sheet.getCell(0, i).getContents());
 	    	da.visit_id = Integer.parseInt(sheet.getCell(1, i).getContents());
@@ -272,7 +260,6 @@ public class DBProcess {
 		Workbook w;
 		
 		w = Workbook.getWorkbook(inputWorkbook);
-		// Get the first sheet
 	    Sheet sheet = w.getSheet(0);
 	    
 	    DiagnoseInfo di = new DiagnoseInfo();
@@ -283,7 +270,6 @@ public class DBProcess {
 			e.printStackTrace();
 		}
 	    
-	    // Loop over first 10 column and lines
 	    for (int i = 1; i < sheet.getRows(); i++) {
 	    	di.patient_id = Integer.parseInt(sheet.getCell(0, i).getContents());
 	    	di.visit_id = Integer.parseInt(sheet.getCell(1, i).getContents());
@@ -305,7 +291,6 @@ public class DBProcess {
 		Workbook w;
 		
 		w = Workbook.getWorkbook(inputWorkbook);
-		// Get the first sheet
 	    Sheet sheet = w.getSheet(0);
 	    
 	    SymptomInfo si = new SymptomInfo();
@@ -316,7 +301,6 @@ public class DBProcess {
 			e.printStackTrace();
 		}
 	    
-	    // Loop over first 10 column and lines
 	    for (int i = 1; i < sheet.getRows(); i++) {
 	    	si.patient_id = Integer.parseInt(sheet.getCell(0, i).getContents());
 	    	si.visit_id = Integer.parseInt(sheet.getCell(1, i).getContents());
