@@ -16,7 +16,7 @@ public class Matrix {
 		
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < p; j++) {
-				double value = x[n].data[j];
+				double value = x[i].data[j];
 				if (value > range[j][0])
 					range[j][0] = value;
 				if (value < range[j][1])
