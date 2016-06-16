@@ -1,7 +1,10 @@
 package com.emr.dbutil;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class BioChemInfo extends DBTable {
 	
@@ -129,5 +132,32 @@ public class BioChemInfo extends DBTable {
 			e.printStackTrace();
 			//System.out.println(e.toString());
 		}
+	}
+	
+	public ArrayList<String[]> getRawData() {
+		String sql = "select * from bio_chem_info order by ztc limit 10";
+		ArrayList<String[]> result = new ArrayList<String[]>();
+		
+		Statement st;
+		try {
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			
+			while (rs.next()) {
+				String[] s = new String[5];
+				s[0] = rs.getString("basajzym");
+				s[1] = rs.getString("tdasajzym");
+				s[2] = rs.getString("zdb");
+				s[3] = rs.getString("xqbdb");
+				s[4] = rs.getString("zdhs");
+				result.add(s);
+			}
+			
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 }
